@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+    		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+        {% block stylesheets %}
+                
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />    
+	<link href="{{asset('css/templatemo-style.css')}}" rel="stylesheet" />
+        {% endblock %}
+
+        {% block javascripts %}
+
+
+
+	</script>
+        {% endblock %}
+    </head>
+    <body>
+        {% include "part-template/_header.html.twig" %}
+        {% block body %}
+
+
+	<script src="bublic/js/jquery.min.js"></script>
+	<script src="public/js/parallax.min.js"></script>
+                        	<script>
+		$(document).ready(function(){
+			// Handle click on paging links
+			    $('.tm-paging-link').click(function(e){
+				e.preventDefault();
+				
+				var page = $(this).text().toLowerCase();
+				$('.tm-gallery-page').addClass('hidden');
+				$('#tm-gallery-page-' + page).removeClass('hidden');
+				$('.tm-paging-link').removeClass('active');
+				$(this).addClass("active");
+			});
+		});
+	</script>
+        {% endblock %}
+    </body>
+      
+</html>
