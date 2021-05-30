@@ -1,4 +1,6 @@
 {
+    "name": "trocgeek",
+   "description": "lol",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "dev",
@@ -82,6 +84,7 @@
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
+           
         },
         "post-install-cmd": [
             "@auto-scripts"
