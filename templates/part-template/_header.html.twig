@@ -12,11 +12,17 @@
 								<h6 class="tm-site-description">new restaurant template</h6>	
 							</div>
 						</div>
+						<li class="tm-nav-li"><a href="{{path('main')}}" class="tm-nav-link active">Home</a></li>
+						{% if app.user %}
+						Welcome
+						{{ app.user.username }}
 						<nav class="col-md-6 col-12 tm-nav">
 							<ul class="tm-nav-ul">
-								<li class="tm-nav-li"><a href="{{path('main')}}" class="tm-nav-link active">Home</a></li>
-								<li class="tm-nav-li"><a href="about.html" class="tm-nav-link">dsfdsfsdfsdfsd</a></li>
-								<li class="tm-nav-li"><a href="{{path('app_forgot_password_request')}}" class="tm-nav-link">reset password</a></li>
+								<li class="tm-nav-li"><a href="{{ path('app_logout')}}" class="tm-nav-link">LOGOUT</a></li>
+								{% else %}
+								<li class="tm-nav-li"><a href="{{path('app_login')}}" class="tm-nav-link">LOGIN</a></li>
+								<li class="tm-nav-li"><a href="{{ path('app_register')}}" class="tm-nav-link">REGISTER</a></li>
+								{% endif %}
 							</ul>
 						</nav>	
 					</div>

@@ -21,26 +21,12 @@
     </head>
     <body>
         {% include "part-template/_header.html.twig" %}
+
+	
         {% block body %}
 
-
-	<script src="bublic/js/jquery.min.js"></script>
-	<script src="public/js/parallax.min.js"></script>
-                        	<script>
-		$(document).ready(function(){
-			// Handle click on paging links
-			    $('.tm-paging-link').click(function(e){
-				e.preventDefault();
-				
-				var page = $(this).text().toLowerCase();
-				$('.tm-gallery-page').addClass('hidden');
-				$('#tm-gallery-page-' + page).removeClass('hidden');
-				$('.tm-paging-link').removeClass('active');
-				$(this).addClass("active");
-			});
-		});
-	</script>
         {% endblock %}
+			{% include "part-template/_footer.html.twig" %}
     </body>
       
 </html>
