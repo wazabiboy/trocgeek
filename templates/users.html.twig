@@ -11,6 +11,7 @@
 			href="https://cdn.jsdelivr.net/npm/axentix@0.5.3/dist/css/axentix.min.css">
 		{% block stylesheets %}{% endblock %}
 		<link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/card.css') }}">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	</head>
 	<body class="layout with-sidenav">
@@ -37,7 +38,8 @@
 
 			</nav>
 		</header> -->
-		{% include "parts/_header.html.twig" %}
+		<!-- {% include "parts/_header.html.twig" %} -->
+		{% include "parts/_header2.html.twig" %}
 		<div id="example-sidenav" class="sidenav large fixed white">
 			<div class="sidenav-header">
 				<button data-target="example-sidenav" class="sidenav-trigger">

@@ -1,0 +1,52 @@
+<header>
+    <div class="container clear">
+      <div id="logo" class="alignCenter left">Logo</div>
+      {% if app.user %}
+      <div id="" class="alignCenter left">Hello  {{ app.user.firstname }} </div>
+      {% endif %}
+    <nav class="right">
+      <div id="toggle" class="right">
+        <span></span><span></span><span></span><span></span>
+      </div>
+        <div id="menu">
+        <ul id="menu-left-menu" class="menu">
+          <li><a href="{{ path('app_home') }}">Home</a></li>
+          {% if is_granted('ROLE_ADMIN')  %}
+          <li>
+            <a class="nav-link" href="{{('geekadminwaz')}}">Dashbord</a>
+          </li>
+          {% endif %}
+          {% if app.user %}
+			
+			<li>
+			</li>
+			<li>
+			  <a class="nav-link" href="{{ path('app_logout') }}">logout</a>
+			  <li>
+				<a class="nav-link" href="{{ path('users') }}">Profil</a>
+			  </li>
+			</li>
+			<h3>Hello  {{ app.user.firstname }} </h3>
+			{% else %}
+			<li>
+			  <a class="nav-link" href="{{ ('login') }}">Login</a>
+			</li>
+			<li>
+			  <a class="nav-link" href="{{ ('register') }}">Register</a>
+			</li>
+			{% endif %}
+      
+            </div>
+        </div>
+    </nav>
+  </div>
+  </header>
+ 
+  <script>
+
+    //Mobile menu
+$('#toggle').on('click', function(){
+	$(this).toggleClass('open');
+	$('body').toggleClass('active');
+});
+  </script>
