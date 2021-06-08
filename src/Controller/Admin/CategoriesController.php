@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/admin/categories", name="admin_categories_")
+ * @Route("/geekadminwaz/categories", name="admin_categories_")
  * @package App\Controller\Admin
  */
 class CategoriesController extends AbstractController
