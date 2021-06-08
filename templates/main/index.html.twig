@@ -1,105 +1,65 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainController!{% endblock %}
+{% block title %}Accueil
+{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
+<link rel="stylesheet" href="{{asset('css/card.css')}}">
+{% endblock %}
 
 {% block body %}
-
-
-		<main>
-			<header class="row tm-welcome-section">
-				<h2 class="col-12 text-center tm-section-title">Welcome to Simple House</h2>
-				<p class="col-12 text-center">Total 3 HTML pages are included in this template. Header image has a parallax effect. You can feel free to download, edit and use this TemplateMo layout for your commercial or non-commercial websites.</p>
-			</header>
-			
-			<div class="tm-paging-links">
-
-				<nav>
-					<ul>
-					
-						<li class="tm-paging-item"><a href="#" class="tm-paging-link active">figure</a></li>
-						<li class="tm-paging-item"><a href="#" class="tm-paging-link">manga</a></li>
-						<li class="tm-paging-item"><a href="#" class="tm-paging-link">games</a></li>
-					</ul>
-				</nav>
-			</div>
-
-			<!-- Gallery -->
-			<div class="row tm-gallery">
-
+<div class="container">
+	{{ form(form) }}	
 	
 
-				<!-- gallery page 1 -->
-				<div name="tm-gallery-page-figure" class="tm-gallery-page">
-					{% for product in products %}
-					<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-						<figure>
-						<img src="{{product.img}}" alt="">
-							<figcaption>
-								<h4 class="tm-gallery-title">{{product.name}}</h4>
-								<p class="tm-gallery-description">{{product.name}}</p>
-								
-							</figcaption>
-						</figure>
-					</article>
-				
-				
-				
-			
-			
-				</div> <!-- gallery page 1 -->
-				
-				<!-- gallery page 2 -->
-				<div name="tm-gallery-page-manga" class="tm-gallery-page hnameden">
-					<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-						<figure>
-							<img src="{{product.img}}}" alt="Image" class="img-fluname tm-gallery-img" />
-							<figcaption>
-								<h4 class="tm-gallery-title">{{product.name}}</h4>
-								<p class="tm-gallery-description"></p>
-							
-							</figcaption>
-						</figure>
-					</article>
-			
-				</div> <!-- gallery page 2 -->
-				
-				<!-- gallery page 3 -->
-				<!-- <div name="tm-gallery-page-games" class="tm-gallery-page hnameden">
-					<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-						<figure>
-							<img src="{{product.name}}" alt="Image" class="img-fluname tm-gallery-img" />
-							<figcaption>
-								<h4 class="tm-gallery-title">{{product.name}}</h4>
-								<p class="tm-gallery-description"></p>
-								
-							</figcaption>
-						</figure>
-					</article>
-				</div>	{% endfor %}
-				 -->
-				
+	{% for annonce in annonces %}
 
-				</div> <!-- gallery page 3 -->
+
+
+
+
+		<div class="grix xs2 sm3 gutter-0 card">
+			<div class="primary flex vcenter fx-center">
+        <img src="{{ asset('uploads/images/annonces/' ~ annonce.images[0].name)|imagine_filter('square') }}" alt="{{ annonce.title }}">
 			</div>
-		
-		</main>
-
-	</div>
-	<script src="public/js/jquery.min.js"></script>
-	<script src="pubic/js/parallax.min.js"></script>
-	<script>
-		$(document).ready(function(){
-			
-			$('.tm-paging-link').click(function(e){
-				e.preventDefault();
+			<div class="col-sm2">
+				<div class="card-header"><p"{{ path('annonces_details', {slug: annonce.slug})}}">{{ annonce.title }}</p></div>
+				{% if is_granted("ROLE_USER") %}
+					
 				
-				let page = $(this).text().toLowerCase();
-			
-				$('.tm-gallery-page').addClass('hnameden');
-				$('#tm-gallery-page-' + page).removeClass('hnameden');
-				$('.tm-paging-link').removeClass('active');
-				$(this).addClass("active");
-			});
-		});
-	</script>
+				<button class="card-header" type="submit"><a href="{{ path('annonces_details', {slug: annonce.slug})}}">Voir l'annonce</a>
+				</button>
+				{% else %}
+				<a class="card-header" href="{{('login')}}">Veillez vous connecter pour Voir l'annonce</a>
+			</button>
+				{% endif %}
+				<div class="card-content">
+                    <p>Catégorie : {{ annonce.categories.name }}</p>
+					<p>
+						{{ annonce.content|striptags|u.truncate(50, '...') }}
+					</p>
+					<div class="txt-red">
+						{% if is_granted("ROLE_USER") %}
+                            {% set isFavorite = false %}
+							{% for favoris in annonce.favoris %}
+								{% if favoris.id == app.user.id %}
+                                    {% set isFavorite = true %}
+								{% endif %}    
+							{% endfor %}
+                            {% if isFavorite %}
+								<a href="{{ path('annonces_retrait_favoris', {id: annonce.id}) }}"><i class="fas fa-heart"></i></a>
+                            {% else %}
+								<a href="{{ path('annonces_ajout_favoris', {id: annonce.id}) }}"><i class="far fa-heart"></i></a>
+                            {% endif %}
+
+						{% else %}
+							<i class="far fa-heart"></i>
+						{% endif %}
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+</div>
 {% endblock %}

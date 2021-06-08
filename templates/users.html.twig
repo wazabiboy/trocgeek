@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+		<link rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/axentix@0.5.3/dist/css/axentix.min.css">
+		{% block stylesheets %}{% endblock %}
+		<link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	</head>
+	<body class="layout with-sidenav">
+		<!-- <header>
+			<nav class="navbar primary">
+				<a href="{{ path('app_home') }}" class="navbar-brand">Accueil</a>
+				<div class="navbar-menu ml-auto">
+				
+
+					{% if app.user %}
+					<h1>Bonjour  {{ app.user.firstname }} {{ app.user.name }}</h1>
+					<a class="navbar-link" href="{{('logout')}}">LOGOUT</a>
+					
+					<a class="navbar-link" href="{{('users')}}">Mon profile</a>
+					
+				
+					{% else %}
+				
+					<a class="navbar-link" href="{{('login')}}">LOG IN</a>
+					<a class="navbar-link" href="{{('register')}}">REGISTER</a>
+				  
+					{% endif %}
+				</div>
+
+			</nav>
+		</header> -->
+		{% include "parts/_header.html.twig" %}
+		<div id="example-sidenav" class="sidenav large fixed white">
+			<div class="sidenav-header">
+				<button data-target="example-sidenav" class="sidenav-trigger">
+					<i class="fas fa-times"></i>
+				</button>
+				<img class="logo dropshadow-1" src="your_img_path" alt="Logo" />
+			</div>
+			<a href="{{path('users')}}" class="sidenav-link active">Mon profil</a>
+			<a href="{{path('app_home')}}" class="sidenav-link">Mes annonces</a>
+			<!-- <a href="{{path('users')}}" class="sidenav-link">Modifier annonces</a> -->
+			
+		</div>
+		<main>
+			<button data-target="example-sidenav" class="btn press amaranth dark-1
+				sidenav-trigger hide-md-up">
+				Open sidenav
+			</button>
+			{% block body %}{% endblock %}
+		</main>
+
+		<footer class="footer primary">
+			Copyright © 2019 - 
+		</footer>
+
+
+		<script
+			src="https://cdn.jsdelivr.net/npm/axentix@0.5.3/dist/js/axentix.min.js"></script>
+		{% block javascripts %}{% endblock %}
+		<script>
+			var sidenav = new Sidenav('#example-sidenav');
+		</script>
+		<script src="{{ asset('js/scripts.js') }}"></script>
+	</body>
+</html>

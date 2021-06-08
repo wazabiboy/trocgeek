@@ -28,14 +28,12 @@ class EmailVerifier
         $signatureComponents = $this->verifyEmailHelper->generateSignature(
             $verifyEmailRouteName,
             $user->getId(),
-            $user->getEmail(),
-            ['id' => $user->getId()]
+            $user->getEmail()
         );
 
         $context = $email->getContext();
         $context['signedUrl'] = $signatureComponents->getSignedUrl();
-        $context['expiresAtMessageKey'] = $signatureComponents->getExpirationMessageKey();
-        $context['expiresAtMessageData'] = $signatureComponents->getExpirationMessageData();
+        $context['expiresAt'] = $signatureComponents->getExpiresAt();
 
         $email->context($context);
 
