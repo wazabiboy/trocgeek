@@ -14,7 +14,20 @@ html , body {
     border-radius: 10px;
     background-color: cornflowerblue;
 }
+h1{
+    color: wheat;
+}
+.btn, label{
+    color: wheat;
+ 
+ 
+}
 
+.btn{
+
+    background-color: rgb(5, 158, 172);
+    color: black;
+}
 main {
 
 
