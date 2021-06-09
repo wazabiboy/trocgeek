@@ -56,9 +56,9 @@
 				<h2>Liste des commentaires</h2>
 				{% for comment in annonce.comments %}
 					{% if comment.parent == null %}
-						<h3>Commentaire de {{comment.nickname}}</h3>
-						<p>Publié le {{comment.createdAt|date("d/m/Y H:i") }}</p>
-						<div>{{comment.content|raw}}</div>
+						<h3 class="nickname">Commentaire de {{comment.nickname}}</h3>
+						<p class="date">Publié le {{comment.createdAt|date("d/m/Y H:i") }}</p>
+						<div class="comment">{{comment.content|raw}}</div>
 						<p><a href="#ajout-commentaire" data-reply data-id="{{comment.id}}" class="btn primary press">Répondre</a></p>
 
 						{# On affiche les réponses #}

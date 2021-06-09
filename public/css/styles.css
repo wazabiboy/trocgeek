@@ -22,6 +22,18 @@ h1{
  
  
 }
+.nickname{
+    color: brown;
+}
+.comment{
+    font-size: 1.2em;
+    border:  black 1px solid;
+    padding: 1%;
+
+}
+div > .col-xs3 , .col-xs1, .col-xs4{
+    color: blanchedalmond;
+}
 
 .btn{
 
