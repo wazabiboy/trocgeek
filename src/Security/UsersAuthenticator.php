@@ -82,6 +82,10 @@ class UsersAuthenticator extends AbstractFormLoginAuthenticator implements Passw
         return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
     }
 
+
+
+    
+   
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
      */
@@ -104,4 +108,7 @@ class UsersAuthenticator extends AbstractFormLoginAuthenticator implements Passw
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
+
+
+    
 }

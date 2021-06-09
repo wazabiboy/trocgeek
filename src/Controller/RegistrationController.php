@@ -45,18 +45,35 @@ class RegistrationController extends AbstractController
         //    $response_final = json_decode($verifyResponse);
 
         
-
+   // That's all !
+   $register = new RegistrationFormType();
+  
+   
         
 
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
-            $user->setPassword(
-                $passwordEncoder->encodePassword(
-                    $user,
-                    $form->get('password')->getData()
-                )
-            );
+            //On vérifie si le champ "recaptcha-response" contient une valeur
+           $key_secret = '6LcdSL0aAAAAAMtHXM3MR_ebvo-y3LMmCl6GASkT';
+           $g_response = $_POST['recaptcha-response'];
+           $url = 'https://www.google.com/recaptcha/api/siteverify';
+           $verifyResponse = file_get_contents($url.'?secret='.$key_secret.'&response='.$g_response);
+
+           $response_final = json_decode($verifyResponse);
+
+           if($response_final->success){
+
+             $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($register);
+            $entityManager->flush();
+            // do anything else you need here, like send an email
+
+            return $this->redirectToRoute('main');
+
+           } else {
+            echo "Error";
+            
+           }
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
