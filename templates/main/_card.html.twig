@@ -1,4 +1,5 @@
-	{% for   annonce in annonces %}
+<link rel="stylesheet" href="{{ asset('css/card.scss') }}">    
+    <!-- {% for   annonce in annonces %}
     <div class="card shadow-1 fx-row">
         <div class="primary d-flex vcenter fx-center px-1">
             <img src="{{ asset('uploads/images/annonces/' ~ annonce.images[0].name)|imagine_filter('square') }}" alt="{{ annonce.title }}">
@@ -30,4 +31,31 @@
           </div>
         </div>
       </div>
-    
+     -->
+
+
+
+     <div class="cards-list">
+      {% for   annonce in annonces %}
+      <div class="card 1">
+        <div class="card_image"> <img src="{{ asset('uploads/images/annonces/' ~ annonce.images[0].name)|imagine_filter('square') }}" alt="{{ annonce.title }}" /> </div>
+        <div class="card_title title-white">
+          <p"{{ path('annonces_details', {slug: annonce.slug})}}">{{ annonce.title }}</p>
+        </div>
+        {% if is_granted("ROLE_USER") %}
+        <button type="submit"><a href="{{ path('annonces_details', {slug: annonce.slug})}}">Voir l'annonce</a>
+        </button>
+        {% else %}
+        <a   href="{{('login')}}">Veillez vous connecter pour Voir l'annonce</a>
+    </button>
+        {% endif %}
+        <div class="card-content">
+            <p>Catégorie : {{ annonce.categories.name }}</p>
+            <p>
+                {{ annonce.content|striptags|u.truncate(50, '...') }}
+            </p>
+
+        </div>
+      </div>
+      {% endfor %}          
+      </div>

@@ -16,6 +16,8 @@ html , body {
 }
 h1{
     color: wheat;
+    font-weight: bold;    
+
 }
 .btn, label{
     color: wheat;
@@ -23,7 +25,32 @@ h1{
  
 }
 .nickname{
-    color: brown;
+    color: rgb(0, 0, 0);
+}
+div > .form-check{
+  background-color: red;
+    display: flex;
+justify-content: space-around;
+width: 70%;
+margin:auto;
+}
+#comments_rgpd{
+border: black 2px solid ;
+}
+.form-check-label {
+color: black !important;
+z-index: 999;
+}
+
+.required , .comments{    text-align: center;
+
+    color: rgb(128, 128, 128);
+}
+.form-control , #editor , #ajout-commentaire , #comments_envoyer{
+    border: black 2px solid ;
+    width: 70%;
+    margin: auto;
+    text-align: center;
 }
 .comment{
     font-size: 1.2em;
