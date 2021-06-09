@@ -1,8 +1,9 @@
 <header>
     <div class="container clear">
-      <div id="logo" class="alignCenter left">Logo</div>
+      <a href="{{path('app_home')}}"><div id="logo" class="alignCenter left"><i class="fas fa-gamepad"></i></div></a>
       {% if app.user %}
       <div id="" class="alignCenter left">Hello  {{ app.user.firstname }} </div>
+      <h4 class="hello">Hello  {{ app.user.firstname }} </h4>
       {% endif %}
     <nav class="right">
       <div id="toggle" class="right">
@@ -18,6 +19,7 @@
           {% endif %}
           {% if app.user %}
 			
+         
 			<li>
 			</li>
 			<li>
@@ -26,7 +28,6 @@
 				<a class="nav-link" href="{{ path('users') }}">Profil</a>
 			  </li>
 			</li>
-			<h3>Hello  {{ app.user.firstname }} </h3>
 			{% else %}
 			<li>
 			  <a class="nav-link" href="{{ ('login') }}">Login</a>
